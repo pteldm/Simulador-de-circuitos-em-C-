@@ -100,7 +100,40 @@ public:
   // DEMAIS FUNCOES DA PORTA
   //
   // FALTA DECLARAR
-  //
+
+  // deletando o construtor específico pois a porta NOT deve ser criada apenas com 1 entrada
+  PortaNOT(int N_entradas) = delete;
+
+  //destrutor da classe PortaNOT
+  ~PortaNOT() {}
+
+  //construtor por cópia
+  PortaNOT(PortaNOT const &other) : Porta(other.Nin_port) {}
+
+  //operador de atribuição por cópia
+  PortaNOT& operator=(const PortaNOT& other)
+  {
+      if(&other == this)
+      {
+        return *this;
+      }
+    this->Nin_port = other.Nin_port;
+    this->out_port = other.out_port;
+
+    return *this;
+  };
+
+  ptr_Porta clone() const
+  {
+    return new PortaNOT(*this);
+  }
+
+  std::string getName() const
+  {
+      return "NT";
+  }
+
+  bool simular(const std::vector<bool3S>& in_port);
 };
 
 class PortaAND: public Porta
@@ -118,6 +151,45 @@ public:
   //
   // FALTA DECLARAR
   //
+
+  //destrutor da classe Porta AND
+  ~PortaAND() {}
+
+  //construtor por cópia
+  PortaAND(PortaAND const &other) : Porta(other.Nin_port)
+  {
+    if(other.Nin_port<2)
+    {
+      Nin_port = 0;
+    }
+  }
+
+  //operador de atribuição por cópia
+  PortaAND& operator=(const PortaAND &other)
+  {
+      if(this == &other)
+      {
+        return *this;
+      }
+
+    this->Nin_port=other.Nin_port;
+    this->out_port=other.out_port;
+
+    return *this;
+  }
+
+  ptr_Porta clone() const
+  {
+    return new PortaAND(*this);
+  }
+
+  std::string getName() const
+  {
+      return "AN";
+  }
+
+  bool simular(const std::vector<bool3S>& in_port);
+
 };
 
 class PortaNAND: public Porta
