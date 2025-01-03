@@ -100,44 +100,7 @@ public:
   // DEMAIS FUNCOES DA PORTA
   //
   // FALTA DECLARAR
-
-  // deletando o construtor específico pois a porta NOT deve ser criada apenas com 1 entrada
-  PortaNOT(int N_entradas) = delete;
-
-  //destrutor da classe PortaNOT
-  ~PortaNOT()
-  {
-      this->Nin_port=0;
-      this->out_port=bool3S::UNDEF;
-  }
-
-  //construtor por cópia
-  PortaNOT(const PortaNOT &other) : Porta(other.Nin_port)
-  {
-      out_port = other.out_port;
-  }
-
-  //sobrecarga do operador de atribuição (por cópia)
-  PortaNOT operator=(const PortaNOT& other)
-  {
-      if(this==&other)
-      {
-        return *this;
-      }
-      return PortaNOT(other);
-  };
-
-  ptr_Porta clone() const
-  {
-    return new PortaNOT(*this);
-  }
-
-  std::string getName() const
-  {
-      return "NT";
-  }
-
-  bool simular(const std::vector<bool3S>& in_port);
+  //
 };
 
 class PortaAND: public Porta
@@ -155,49 +118,6 @@ public:
   //
   // FALTA DECLARAR
   //
-
-  //destrutor da classe Porta AND
-  ~PortaAND()
-  {
-      this->Nin_port=0;
-      this->out_port= bool3S::UNDEF;
-  }
-
-  //construtor por cópia
-  PortaAND(const PortaAND &other) : Porta(other.Nin_port)
-  {
-    if(other.Nin_port<2)
-    {
-      Nin_port = 0;
-    }
-    this->out_port=other.out_port;
-  }
-
-  //sobrecarga do operador de atribuição (por cópia)
-  PortaAND operator=(const PortaAND &other)
-  {
-      if(this == &other)
-      {
-        return *this;
-      }
-      return PortaAND(other);
-  }
-
-  //função virtual clone da classe PortaAND
-  ptr_Porta clone() const
-  {
-    return new PortaAND(*this);
-  }
-
-  //função virtual getName da classe PortaAND
-  std::string getName() const
-  {
-      return "AN";
-  }
-
-  //função virtual simular da classe PortaAND
-  bool simular(const std::vector<bool3S>& in_port);
-
 };
 
 class PortaNAND: public Porta
@@ -215,43 +135,6 @@ public:
   //
   // FALTA DECLARAR
   //
-
-  //destrutor da classe PortaNAND
-  ~PortaNAND()
-  {
-      this->Nin_port=0;
-      this->out_port=bool3S::UNDEF;
-  }
-
-  //construtor por cópia
-  PortaNAND(const PortaNAND &other) : Porta(other)
-  {
-      this->out_port = other.out_port;
-  }
-
-  //sobrecarga do operador de atribuição(por cópia)
-  PortaNAND operator=(const PortaNAND &other)
-  {
-      if(this==&other)
-      {
-          return *this;
-      }
-      return PortaNAND(other);
-  }
-
-  //função virtual clone da classe PortaNAND
-  ptr_Porta clone() const
-  {
-      return new PortaNAND(*this);
-  }
-
-  std::string getName() const
-  {
-      return "NA";
-  }
-
-  bool simular(const std::vector<bool3S> &in_port);
-
 };
 
 class PortaOR: public Porta
@@ -269,44 +152,6 @@ public:
   //
   // FALTA DECLARAR
   //
-
-  //destrutor da classe PortaOR
-  ~PortaOR()
-  {
-      this->Nin_port=0;
-      this->out_port=bool3S::UNDEF;
-  }
-
-  //construtor por cópia da classe PortaOR
-  PortaOR(const PortaOR &other) : Porta(other)
-  {
-      this->out_port = other.out_port;
-  }
-
-  //sobrecarga do operador de atribuição (por cópia)
-  PortaOR operator=(const PortaOR &other)
-  {
-      if(this==&other)
-      {
-          return *this;
-      }
-      return PortaOR(other);
-  }
-
-  //função virtual clone
-  ptr_Porta clone() const
-  {
-      return new PortaOR(*this);
-  }
-
-  //função virtual getName
-  std::string getName() const
-  {
-      return "OR";
-  }
-
-  //função virtual simular
-  bool simular(const std::vector<bool3S> &other);
 };
 
 class PortaNOR: public Porta
@@ -324,44 +169,6 @@ public:
   //
   // FALTA DECLARAR
   //
-
-  //destrutor da classe PortaNOR
-  ~PortaNOR()
-  {
-      this->Nin_port=0;
-      this->out_port=bool3S::UNDEF;
-  }
-
-  //construtor por cópia da classe PortaNOR
-  PortaNOR(const PortaNOR &other) : Porta(other)
-  {
-      this->out_port=other.out_port;
-  }
-
-  //sobrecarga do operador de atribuição(por cópia)
-  PortaNOR operator=(const PortaNOR &other)
-  {
-      if(this==&other)
-      {
-          return *this;
-      }
-      return PortaNOR(other);
-  }
-
-  //função virtual clone
-  ptr_Porta clone() const
-  {
-      return new PortaNOR(*this);
-  }
-
-  //função virtual getName
-  std::string getName() const
-  {
-      return "NO";
-  }
-
-  //função virtual simular
-  bool simular(const std::vector<bool3S> &other);
 };
 
 class PortaXOR: public Porta
