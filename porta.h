@@ -275,6 +275,43 @@ public:
   //
   // FALTA DECLARAR
   //
+
+  //destrutor da classe PortaOR
+  ~PortaOR()
+  {
+      this->Nin_port=0;
+      this->out_port=bool3S::UNDEF;
+  }
+
+  //construtor por cópia da classe PortaOR
+  PortaOR(const PortaOR &other) : Porta(other)
+  {
+      this->out_port = other.out_port;
+  }
+
+  //sobrecarga do operador de atribuição (por cópia)
+  PortaOR operator=(const PortaOR &other)
+  {
+      this->Nin_port=other.Nin_port;
+      this->out_port=other.out_port;
+
+      return *this;
+  }
+
+  //função virtual clone
+  ptr_Porta clone() const
+  {
+      return new PortaOR(*this);
+  }
+
+  //função virtual getName
+  std::string getName() const
+  {
+      return "OR";
+  }
+
+  //função virtual simular
+  bool simular(const std::vector<bool3S> &other);
 };
 
 class PortaNOR: public Porta
