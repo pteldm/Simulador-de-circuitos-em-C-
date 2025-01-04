@@ -13,35 +13,93 @@
 //
 // FALTA IMPLEMENTAR
 //
+Circuito::Circuito(const Circuito& C) :
+      Nin_circ(C.Nin_circ),
+      ports(C.ports),
+      out_circ(C.out_circ),
+      id_in(C.id_in),
+      id_out(C.id_out)
+{}
+
 
 // Construtor por movimento
 //
 // FALTA IMPLEMENTAR
 //
+Circuito::Circuito(Circuito&& C) noexcept :
+    Nin_circ(C.Nin_circ),
+    ports(C.ports),
+    out_circ(C.out_circ),
+    id_in(C.id_in),
+    id_out(C.id_out)
+{}
+
 
 // Limpa todo o conteudo do circuito.
 void Circuito::clear() noexcept
 {
-  //
-  // FALTA IMPLEMENTAR
-  //
+    this->Nin_circ=0;
+    this->ports.clear();
+    for (int i = 0; i < ports.size(); ++i) {
+        delete ports[i];    //desalocando a memória do contêiner dinâmico
+    }
+    this->out_circ.clear();
+    this->id_in.clear();
+    this->id_out.clear();
 }
 
 // Operador de atribuicao por copia
 Circuito& Circuito::operator=(const Circuito& C)
 {
-  //
-  // FALTA IMPLEMENTAR
-  //
+    //verificação de autoatribuição
+    if(this==&C)
+    {
+      return *this;
+    }
+
+    this->Nin_circ=C.Nin_circ;
+
+    this->ports.resize(C.ports.size());
+    for(int i=0 ; i < C.ports.size() ; ++i)
+    {
+        this->ports[i] = C.ports[i];
+    }
+
+    this->out_circ.resize(C.out_circ.size());
+    for(int i=0 ; i < C.out_circ.size() ; ++i)
+    {
+        this->out_circ[i] = C.out_circ[i];
+    }
+
+    this->id_in.resize(C.id_in.size());
+    for(int i=0 ; i < C.id_in.size() ; ++i)
+    {
+        this->id_in[i] = C.id_in[i];
+    }
+
+    this->id_out.resize(C.id_out.size());
+    for(int i=0 ; i < C.id_out.size() ; ++i)
+    {
+        this->id_out[i] = C.id_out[i];
+    }
+
   return *this;
 }
 
 // Operador de atribuicao por movimento
 Circuito& Circuito::operator=(Circuito&& C) noexcept
 {
-  //
-  // FALTA IMPLEMENTAR
-  //
+    //verificação de autoatribuição
+    if(this==&C)
+    {
+        return *this;
+    }
+
+    this->Nin_circ=C.Nin_circ;
+    this->ports=std::move(C.ports);
+    this->out_circ=std::move(C.out_circ);
+    this->id_in=std::move(C.id_in);
+    this->id_out=std::move(C.id_out);
   return *this;
 }
 
@@ -50,9 +108,9 @@ void Circuito::resize(int NI, int NO, int NP)
 {
   if (NI<=0 || NO<=0 || NP<=0) return;
 
-  //
-  // FALTA IMPLEMENTAR
-  //
+  this->Nin_circ=NI;
+  this->out_circ.resize(NO);
+  this->ports.resize(NP);
 }
 
 /// ***********************
@@ -142,6 +200,7 @@ bool Circuito::setPort(int IdPort, std::string& Tipo, int Nin)
   // Altera a porta:
   // - cria a nova porta
   // - redimensiona o vetor de conexoes da porta
+
 
   //
   // FALTA IMPLEMENTAR
