@@ -433,6 +433,43 @@ public:
   //
   // FALTA DECLARAR
   //
+
+  //destrutor da classe PortaNXOR
+  ~PortaNXOR()
+  {
+      this->Nin_port=0;
+      this->out_port=bool3S::UNDEF;
+  }
+
+  //construtor por cópia da classe PortaNXOR
+  PortaNXOR(const PortaNXOR &other) : Porta(other.Nin_port)
+  {
+      out_port = other.out_port;
+  }
+
+  //sobrecarga do operador de atribuição(por cópia)
+  PortaNXOR operator=(const PortaNXOR &other)
+  {
+      if(this == &other)
+      {
+          return *this;
+      }
+      return PortaNXOR(*this);
+  }
+
+  //função virtual clone
+  ptr_Porta clone() const
+  {
+      return new PortaNXOR(*this);
+  }
+
+  //função virtual getName
+  std::string getName() const
+  {
+      return "NX";
+  }
+
+  bool simular(const std::vector<bool3S> &in_port);
 };
 
 #endif // _PORTA_H_
