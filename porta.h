@@ -224,7 +224,7 @@ public:
   }
 
   //construtor por cópia
-  PortaNAND(const PortaNAND &other) : Porta(other)
+  PortaNAND(const PortaNAND &other) : Porta(other.Nin_port)
   {
       this->out_port = other.out_port;
   }
@@ -278,7 +278,7 @@ public:
   }
 
   //construtor por cópia da classe PortaOR
-  PortaOR(const PortaOR &other) : Porta(other)
+  PortaOR(const PortaOR &other) : Porta(other.Nin_port)
   {
       this->out_port = other.out_port;
   }
@@ -306,7 +306,7 @@ public:
   }
 
   //função virtual simular
-  bool simular(const std::vector<bool3S> &other);
+  bool simular(const std::vector<bool3S> &in_port);
 };
 
 class PortaNOR: public Porta
@@ -333,7 +333,7 @@ public:
   }
 
   //construtor por cópia da classe PortaNOR
-  PortaNOR(const PortaNOR &other) : Porta(other)
+  PortaNOR(const PortaNOR &other) : Porta(other.Nin_port)
   {
       this->out_port=other.out_port;
   }
@@ -361,7 +361,7 @@ public:
   }
 
   //função virtual simular
-  bool simular(const std::vector<bool3S> &other);
+  bool simular(const std::vector<bool3S> &in_port);
 };
 
 class PortaXOR: public Porta
@@ -379,6 +379,43 @@ public:
   //
   // FALTA DECLARAR
   //
+
+  //destrutor da classe PortaXOR
+  ~PortaXOR()
+  {
+      this->Nin_port=0;
+      this->out_port=bool3S::UNDEF;
+  }
+
+  //construtor por cópia da classe PortaXOR
+  PortaXOR(const PortaXOR &other) : Porta(other.Nin_port)
+  {
+      this->out_port = other.out_port;
+  }
+
+  //sobrecarga do operador de atribuição(por cópia)
+  PortaXOR operator=(const PortaXOR &other)
+  {
+      if(this == &other)
+          return *this;
+
+      return PortaXOR(other);
+  }
+
+  //função virtual clone
+  ptr_Porta clone() const
+  {
+      return new PortaXOR(*this);
+  }
+
+  //função virtual getName
+  std::string getName() const
+  {
+      return "XO";
+  }
+
+  //função virtual simular
+  bool simular(const std::vector<bool3S> &in_port);
 };
 
 class PortaNXOR: public Porta

@@ -113,6 +113,22 @@ bool PortaNOR::simular(const std::vector<bool3S> &in_port)
 // FALTA IMPLEMENTAR
 //
 
+bool PortaXOR::simular(const std::vector<bool3S> &in_port)
+{
+    bool3S prov = bool3S::UNDEF;
+    if(in_port.size()>0 && in_port.size() == this->Nin_port)
+    {
+        for(int i=0;i<in_port.size()-1;++i)
+        {
+            prov = in_port[i]^in_port[i+1];
+        }
+        this->out_port=prov;
+        return true;
+    }
+    this->out_port=prov;
+    return false;
+}
+
 /// Porta NXOR
 
 //
