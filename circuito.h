@@ -7,7 +7,7 @@
 /// ###########################################################################
 /// ATENCAO PARA A CONVENCAO DOS NOMES PARA OS PARAMETROS DAS FUNCOES:
 /// int I: indice (de entrada de porta): de 0 a NInputs-1
-/// int Id___: identificador (de entrada, saida ou porta): nao 0
+/// int Id___: identificador (de entrada, saida ou porta): nao 0 !=0
 /// - int IdInput: de -1 a -NumEntradasCircuito
 /// - int IdOutput: de 1 a NumSaidasCircuito
 /// - int IdPort: de 1 a NumPortasCircuito
