@@ -228,7 +228,7 @@ public:
         return new PortaXOR(*this);
     }
     std::string getName() const override{
-        return "XR";
+        return "XO";
     }
     bool simular(const std::vector<bool3S>& in_port) override;
 };

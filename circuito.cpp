@@ -327,6 +327,7 @@ bool Circuito::ler(const std::string& arq)
             if (!myfile.good() || id != i+1 || c!=')' ||
                 !prov.setIdOutputCirc(id, id_orig)) throw 9;
         }
+
     }
     catch (int erro)
     {
@@ -438,9 +439,6 @@ bool Circuito::simular(const std::vector<bool3S>& in_circ)
         int id_orig = getIdOutputCirc(i);
         out_circ[i-1] = id_orig > 0 ? ports.at(id_orig-1)->getOutput() : in_circ[-id_orig -1];
     }
-
-
-    std::cout << "chegou 2";
 
     // Tudo OK com a simulação
     return true;
