@@ -212,27 +212,27 @@ bool Circuito::setPort(int IdPort,  std::string& Tipo, int Nin)
     if (Tipo == "NT") {
         ports[IdPort - 1] = new PortaNOT();
     }
-    if (Tipo == "AN") {
+    else if (Tipo == "AN") {
         ports[IdPort-1] = new PortaAND(Nin);
     }
-    if (Tipo == "NA") {
+    else if (Tipo == "NA") {
         ports[IdPort-1] = new PortaNAND(Nin);
     }
-    if (Tipo == "OR") {
+    else if (Tipo == "OR") {
         ports[IdPort-1] = new PortaOR(Nin);
     }
-    if (Tipo == "NO") {
+    else if (Tipo == "NO") {
         ports[IdPort-1] = new PortaNOR(Nin);
     }
-    if (Tipo == "XO") {
+    else if (Tipo == "XO") {
         ports[IdPort-1] = new PortaXOR(Nin);
     }
-    if (Tipo == "NX") {
+    else if (Tipo == "NX") {
         ports[IdPort-1] = new PortaNXOR(Nin);
     }
 
     // Redimensiona o vetor de entradas para o número de entradas especificado
-    id_in.at(IdPort - 1).resize(Nin);
+    id_in.at(IdPort - 1).resize(Nin, 0);
 
     return true;
 }
